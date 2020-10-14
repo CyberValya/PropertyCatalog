@@ -1,6 +1,8 @@
 package com.example.propertycatalog;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 
 public class EditObject extends AppCompatActivity {
 
@@ -50,7 +54,13 @@ public class EditObject extends AppCompatActivity {
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         public void run() {
-                            returnToMain(userName);
+//                            Intent i = new Intent();
+//                            i.putExtra("price", price.getText().toString());
+//                            i.putExtra("square", square.getText().toString());
+//                            i.putExtra("floor", floor.getText().toString());
+//                            i.putExtra("rooms", rooms.getText().toString());
+//
+//                            setResult(RESULT_OK, i);
                             finish();
                         }
                     }, 1000);
@@ -58,9 +68,5 @@ public class EditObject extends AppCompatActivity {
             }
         });
     }
-    public void returnToMain(String userName){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("userName", userName);
-        startActivity(intent);
-    }
+
 }

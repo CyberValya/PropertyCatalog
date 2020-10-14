@@ -1,6 +1,9 @@
 package com.example.propertycatalog;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +18,24 @@ import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class objectInformation extends AppCompatActivity {
 
     ImageView imageView;
     TextView priceText, squareText, roomsText, floorText, addresText, priceForSqM;
     String _price, _square, _rooms, _floor, _image, _userName;
     Button back, edit;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        priceText.setText(data.getStringExtra("price"));
+//        squareText.setText(data.getStringExtra("square"));
+//        roomsText.setText(data.getStringExtra("rooms"));
+//        floorText.setText(data.getStringExtra("floor"));
+        finish();
+    }
 
     private void startEdit(){
         Intent intent = new Intent(this, EditObject.class);
@@ -32,8 +47,8 @@ public class objectInformation extends AppCompatActivity {
         intent.putExtra("image", _image);
         intent.putExtra("userName", _userName);
 
-        startActivity(intent);
-        finish();
+        startActivityForResult(intent, 1);
+//        finish();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.propertycatalog;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class ObjectAdapter extends RecyclerView.Adapter<Holder> {
 
@@ -56,6 +60,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<Holder> {
                 intent.putExtra("square", String.valueOf(list.get(position).getSquare()));
                 intent.putExtra("priceForSqM", String.valueOf(list.get(position).getPriceForSqM()));
                 context.startActivity(intent);
+                startActivityForResult((Activity)context, intent, MainActivity.REQUEST_CODE, null);
             }
         });
     }

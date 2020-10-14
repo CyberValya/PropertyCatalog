@@ -168,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(ocAdd);
         exit.setOnClickListener(ocExit);
 
-//        setSupportActionBar(toolbar);
 
     }
     private void newactivity(){
