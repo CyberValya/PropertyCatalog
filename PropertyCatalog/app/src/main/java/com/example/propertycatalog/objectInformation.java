@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
@@ -30,11 +31,14 @@ public class objectInformation extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        priceText.setText(data.getStringExtra("price"));
-//        squareText.setText(data.getStringExtra("square"));
-//        roomsText.setText(data.getStringExtra("rooms"));
-//        floorText.setText(data.getStringExtra("floor"));
-        finish();
+        priceText.setText(data.getStringExtra("price"));
+        squareText.setText(data.getStringExtra("square"));
+        roomsText.setText(data.getStringExtra("rooms"));
+        floorText.setText(data.getStringExtra("floor"));
+//        Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show();
+//        if(resultCode == RESULT_OK && requestCode == MainActivity.REQUEST_CODE) {
+//            finish();
+//        }
     }
 
     private void startEdit(){
@@ -47,7 +51,8 @@ public class objectInformation extends AppCompatActivity {
         intent.putExtra("image", _image);
         intent.putExtra("userName", _userName);
 
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, MainActivity.REQUEST_CODE);
+//        startActivity(intent);
 //        finish();
     }
 
@@ -67,6 +72,7 @@ public class objectInformation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startEdit();
+//                finish();
             }
         });
 

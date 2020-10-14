@@ -59,7 +59,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<Holder> {
                 intent.putExtra("floor", String.valueOf(list.get(position).getFloor()));
                 intent.putExtra("square", String.valueOf(list.get(position).getSquare()));
                 intent.putExtra("priceForSqM", String.valueOf(list.get(position).getPriceForSqM()));
-                context.startActivity(intent);
+//                context.startActivity(intent);
                 startActivityForResult((Activity)context, intent, MainActivity.REQUEST_CODE, null);
             }
         });

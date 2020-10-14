@@ -54,13 +54,13 @@ public class EditObject extends AppCompatActivity {
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         public void run() {
-//                            Intent i = new Intent();
-//                            i.putExtra("price", price.getText().toString());
-//                            i.putExtra("square", square.getText().toString());
-//                            i.putExtra("floor", floor.getText().toString());
-//                            i.putExtra("rooms", rooms.getText().toString());
-//
-//                            setResult(RESULT_OK, i);
+                            Intent i = new Intent();
+                            i.putExtra("price", price.getText().toString());
+                            i.putExtra("square", square.getText().toString());
+                            i.putExtra("floor", floor.getText().toString());
+                            i.putExtra("rooms", rooms.getText().toString());
+                            setResult(RESULT_OK, i);
+//                            getParent().finish();
                             finish();
                         }
                     }, 1000);
