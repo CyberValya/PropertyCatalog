@@ -40,8 +40,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull final Holder holder, int position) {
-        holder.price.setText(String.valueOf(list.get(position).getPrice()));
-        String str = list.get(position).getAddress() + " " + String.valueOf(list.get(position).getSquare());
+        holder.price.setText("Цена: " + String.valueOf(list.get(position).getPrice()));
+        String str = "Площадь: " + String.valueOf(list.get(position).getSquare()) + "\nАдрес:" + list.get(position).getAddress();
         holder.other.setText(str);
 //        Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
         Picasso.with(context).load(list.get(position).getImage()).into(holder.imageView);
