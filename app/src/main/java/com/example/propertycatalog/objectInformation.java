@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -68,13 +69,7 @@ public class objectInformation extends AppCompatActivity {
             }
         });
         edit = findViewById(R.id.edit);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startEdit();
-//                finish();
-            }
-        });
+        final DatabaseHelper dbh = new DatabaseHelper(this);
 
         imageView = findViewById(R.id.imageView2);
         priceText = findViewById(R.id.price);
@@ -99,6 +94,19 @@ public class objectInformation extends AppCompatActivity {
         floorText.setText(intent.getStringExtra("floor"));
         addresText.setText(intent.getStringExtra("addres"));
         priceForSqM.setText(intent.getStringExtra("priceForSqM"));
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(dbh.checkingForChanges(_userName, _image)) {
+                    startEdit();
+//                }
+//                else{
+//                    Snackbar.make(v, "Вы не обладаете правами редактировать этот объект", Snackbar.LENGTH_LONG).show();
+//                }
+//                finish();
+            }
+        });
 
 //        SaleObject saleObject = (SaleObject) intent.getExtras().get("object");
 //        Bitmap bitmap = (Bitmap) intent.getExtras().get("image");

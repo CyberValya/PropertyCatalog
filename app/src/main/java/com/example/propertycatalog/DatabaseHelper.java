@@ -143,4 +143,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.update("object", contentValues, "image=?", new String[]{_image});
         }
     }
+    public boolean checkingForChanges(String user, String image){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from object where user=? and image=?", new String[]{user, image});
+        if(cursor.getCount() > 0) return true;
+        else return false;
+    }
 }
