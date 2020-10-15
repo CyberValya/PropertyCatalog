@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,9 +37,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.util.ArrayList;
 import com.google.android.material.snackbar.Snackbar;
@@ -51,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private Button add, exit;
     final private int code = 0;
     private SaleObject saleObject;
-    final String FILENAME = "Sale object info";
-    String username = "";
+    final String FILENAME = "info";
+    public static String username = "";
     RecyclerView recyclerView;
     ObjectAdapter adapter;
     public static final int REQUEST_CODE = 100;
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(data != null && requestCode == 1){
             username = data.getStringExtra("user");
+            Global.user = username;
             displayAllObjects();
         }
         if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
@@ -215,6 +220,4 @@ public class MainActivity extends AppCompatActivity {
 //        };
 //        listOfObjects.setAdapter(adapter);
     }
-
-
 }

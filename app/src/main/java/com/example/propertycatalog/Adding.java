@@ -38,7 +38,7 @@ public class Adding extends Activity
     String objectImage = "Sale Objects";
     String currentUID = "id" + (new Date()).toString();
     EditText addSquare, addPrice, addAddres, addRooms, addFloor;
-    final String FILENAME = "Sale object info";
+    final String FILENAME = "info";
     DatabaseHelper dbh;
     String username = "";
 

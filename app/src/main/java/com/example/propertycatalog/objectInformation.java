@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -69,7 +70,7 @@ public class objectInformation extends AppCompatActivity {
             }
         });
         edit = findViewById(R.id.edit);
-        final DatabaseHelper dbh = new DatabaseHelper(this);
+        Intent intent = getIntent();
 
         imageView = findViewById(R.id.imageView2);
         priceText = findViewById(R.id.price);
@@ -79,7 +80,6 @@ public class objectInformation extends AppCompatActivity {
         addresText = findViewById(R.id.addres);
         priceForSqM = findViewById(R.id.priceForSqM);
 
-        Intent intent = getIntent();
         _price = intent.getStringExtra("price");
         _floor = intent.getStringExtra("rooms");
         _rooms = intent.getStringExtra("rooms");
@@ -94,16 +94,17 @@ public class objectInformation extends AppCompatActivity {
         floorText.setText(intent.getStringExtra("floor"));
         addresText.setText(intent.getStringExtra("addres"));
         priceForSqM.setText(intent.getStringExtra("priceForSqM"));
+        final String u = intent.getStringExtra("user");
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(dbh.checkingForChanges(_userName, _image)) {
+                if(u.equals(Global.user)) {
                     startEdit();
-//                }
-//                else{
-//                    Snackbar.make(v, "Вы не обладаете правами редактировать этот объект", Snackbar.LENGTH_LONG).show();
-//                }
+                }
+                else{
+                    Snackbar.make(v, "Вы не обладаете правами редактировать этот объект", Snackbar.LENGTH_LONG).show();
+                }
 //                finish();
             }
         });

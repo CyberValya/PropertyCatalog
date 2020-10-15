@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import static androidx.core.app.ActivityCompat.startActivityForResult;
@@ -59,6 +64,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<Holder> {
                 intent.putExtra("floor", String.valueOf(list.get(position).getFloor()));
                 intent.putExtra("square", String.valueOf(list.get(position).getSquare()));
                 intent.putExtra("priceForSqM", String.valueOf(list.get(position).getPriceForSqM()));
+                intent.putExtra("user", list.get(position).user);
 //                context.startActivity(intent);
                 startActivityForResult((Activity)context, intent, MainActivity.REQUEST_CODE, null);
             }

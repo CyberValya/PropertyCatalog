@@ -101,7 +101,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String rooms = cursor.getString(cursor.getColumnIndexOrThrow("rooms"));
                 String floor = cursor.getString(cursor.getColumnIndexOrThrow("floor"));
                 String square = cursor.getString(cursor.getColumnIndexOrThrow("square"));
-                list.add(new SaleObject(Uri.parse(image), Double.parseDouble(price), addres, Integer.parseInt(rooms), Integer.parseInt(floor),  Double.parseDouble(square)));
+                SaleObject saleObject = new SaleObject(Uri.parse(image), Double.parseDouble(price), addres, Integer.parseInt(rooms), Integer.parseInt(floor),  Double.parseDouble(square));
+                saleObject.user = user;
+                list.add(saleObject);
             } while (cursor.moveToNext());
         }
         return list;
@@ -142,11 +144,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             db.update("object", contentValues, "image=?", new String[]{_image});
         }
-    }
-    public boolean checkingForChanges(String user, String image){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * from object where user=? and image=?", new String[]{user, image});
-        if(cursor.getCount() > 0) return true;
-        else return false;
     }
 }

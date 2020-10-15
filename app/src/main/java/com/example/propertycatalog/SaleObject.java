@@ -13,6 +13,7 @@ public class SaleObject implements Serializable {
     private double priceForSqM;
     private int floor;
     private double square;
+    String user;
 
     public double getSquare() {
         return square;
