@@ -99,7 +99,7 @@ public class objectInformation extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(u.equals(Global.user)) {
+                if(u == Global.user) {
                     startEdit();
                 }
                 else{

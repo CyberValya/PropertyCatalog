@@ -94,7 +94,7 @@ public class Adding extends Activity
                     int floor = Integer.parseInt(addFloor.getText().toString());
                     Double square = Double.parseDouble(addSquare.getText().toString());
 //                    SaleObject saleObject = new SaleObject(image, price, addres, rooms, floor, square);
-                    if(dbh.insertObject(username, image.toString(), price, addres, rooms, floor, square)){
+                    if(dbh.insertObject(Global.user, image.toString(), price, addres, rooms, floor, square)){
                         Snackbar.make(v, "Объект успешно добавлен", Snackbar.LENGTH_SHORT).show();
 //                        intent.putExtra("user", username);
                         setResult(RESULT_OK);

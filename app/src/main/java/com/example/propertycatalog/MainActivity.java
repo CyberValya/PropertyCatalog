@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 //    private FirebaseListAdapter<SaleObject> adapter;
-//    private static int SIGN_IN_CODE = 1;
+    private static int SIGN_IN_CODE = 1;
     private RelativeLayout activity_main;
     private Button add, exit;
     final private int code = 0;
@@ -65,21 +65,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data != null && requestCode == 1){
-            username = data.getStringExtra("user");
-            Global.user = username;
-            displayAllObjects();
-        }
+//        if(data != null && requestCode == 1){
+//            username = data.getStringExtra("user");
+//            Global.user = username;
+//            displayAllObjects();
+//        }
         if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
 //            Toast.makeText(this, "Hello",Toast.LENGTH_LONG).show();
             displayAllObjects();
         }
         displayAllObjects();
-//        if(requestCode == SIGN_IN_CODE)
-//        {
-//            if(resultCode == RESULT_OK) {
-//                Snackbar.make(activity_main, "Вы авторизованы!", Snackbar.LENGTH_SHORT).show();
-//                displayAllObjects();
+        if(requestCode == SIGN_IN_CODE)
+        {
+            if(resultCode == RESULT_OK) {
+                Snackbar.make(activity_main, "Вы авторизованы!", Snackbar.LENGTH_SHORT).show();
+                displayAllObjects();
+                Global.user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 //                try {
 //                    //поток для чтения параметров объекта
 //                    BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(FILENAME)));
@@ -107,13 +108,13 @@ public class MainActivity extends AppCompatActivity {
 //                } catch (IOException e) {
 //                    Snackbar.make(activity_main, "Что-то пошло не так :(", Snackbar.LENGTH_LONG).show();
 //                }
-//            }
-//            else
-//            {
-//                Snackbar.make(activity_main, "Вы не авторизованы!", Snackbar.LENGTH_SHORT).show();
-//                finish();
-//            }
-//        }
+            }
+            else
+            {
+                Snackbar.make(activity_main, "Вы не авторизованы!", Snackbar.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 
 
@@ -128,31 +129,25 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        displayAllObjects();
 
-//        if(getIntent() != null) {
-//            Intent i = getIntent();
-//            if (i.getStringExtra("userName").length() > 0) {
-//                username = i.getStringExtra("userName");
-//            }
-//        }
 
-        if(username.equals("")) {
-            newactivity();
-            displayAllObjects();
-        }
-
-//        if(FirebaseAuth.getInstance().getCurrentUser() == null)
-//        {
-//            регистрируем пользователя, если он тут впервые
-//            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(), SIGN_IN_CODE);
-//        }
-//        else
-//        {
-//            Snackbar.make(activity_main, "Вы авторизованы!", Snackbar.LENGTH_SHORT).show();
+//        if(username.equals("")) {
+//            newactivity();
 //            displayAllObjects();
 //        }
 
+        if(FirebaseAuth.getInstance().getCurrentUser() == null)
+        {
+//            регистрируем пользователя, если он тут впервые
+            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(), SIGN_IN_CODE);
+        }
+        else
+        {
+            Snackbar.make(activity_main, "Вы авторизованы!", Snackbar.LENGTH_SHORT).show();
+//            Snackbar.make(activity_main, Global.user, Snackbar.LENGTH_SHORT).show();
+            displayAllObjects();
+        }
+        displayAllObjects();
 //        toolbar = findViewById(R.id.toolBarForObject);
 
         View.OnClickListener ocAdd = new View.OnClickListener() {
@@ -166,7 +161,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 username = "";
-                newactivity();
+                FirebaseAuth.getInstance().signOut();
+                startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(), SIGN_IN_CODE);
+//                newactivity();
                 displayAllObjects();
             }
         };
